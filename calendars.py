@@ -3,6 +3,9 @@ import datetime
 
 
 def list_all_calendars():
+    """
+    lists all the calendars that belong to the logged in user.
+    """
     service = auth.create_service()
     pt = None
     while 1:
@@ -15,6 +18,9 @@ def list_all_calendars():
 
 
 def list_events():
+    """Lists all events for the next seven days
+    """
+
     s = datetime.datetime.now().isoformat() + 'Z'
     elapsed = datetime.timedelta(days=7)
     e = (datetime.datetime.now() + elapsed).isoformat() + 'Z'
