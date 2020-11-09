@@ -2,7 +2,7 @@
 
 tasks:
 
--> please, edit this file make a pull request.("you can just add your name")
+-> please, edit this file and make a pull request.("you can just add your name")
 
 ------------------------------------------------------------------------------
 
