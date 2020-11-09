@@ -1,1 +1,5 @@
+#this is so you don't upload the token for your personal email.
+#token.pickle is for the user. while shared_token.pickle is for the shared calendar
+#auth.py -> create_service() and create_shared_service()
+
 token.pickle
