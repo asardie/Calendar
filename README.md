@@ -34,9 +34,15 @@ DESIGN NOTES:
 -------------
 
 BOOKING:
+
     -> 
     
 AUTHENTICATION:
+
     ->
+
+SET_UP
+
+    -> set_up.py
     
 main.py
