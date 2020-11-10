@@ -39,7 +39,7 @@ def list_events():
             break
 
 
-def get_event():
+def get_event(id=None):
     service = auth.create_service()
     id = '4btsiajm17usupgkou04vdni3i'
     ev = service.events().get(calendarId='primary',
@@ -56,4 +56,3 @@ def get_event():
         print(a)
 
 
-get_event()
