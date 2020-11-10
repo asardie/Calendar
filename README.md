@@ -28,3 +28,15 @@ Some Way of getting user input
 Some way of validating input from the user.
 
 And any sense of structure
+
+
+DESIGN NOTES:
+-------------
+
+BOOKING:
+    -> 
+    
+AUTHENTICATION:
+    ->
+    
+main.py
