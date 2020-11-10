@@ -12,6 +12,11 @@ tasks: #if you complete a task. It will be removed it once code has been merged
     arg: time {datetime.datetime}
     return:  valid_time {bool}
     
+-> We need a function that checks what day of the week it is or will be on a spencific date.
+    
+    prototype: def day_of(time: datetime.datetime) -> string/int:
+    arg: time {datetime.datetime}
+    return: string('monday', 'tuesday', etc) or int 1-7 numbering the days from monday(1) to sunday(7)
 ------------------------------------------------------------------------------
 
 What we need:
