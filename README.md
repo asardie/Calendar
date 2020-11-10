@@ -12,11 +12,10 @@ tasks: #if you complete a task. It will be removed it once code has been merged
     arg: time {datetime.datetime}
     return:  valid_time {bool}
     
-
 ------------------------------------------------------------------------------
 
 What we need:
-
+-------------
 We Still need a main...
 
 Some Way of getting user input
