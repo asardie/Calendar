@@ -33,14 +33,14 @@ And any sense of structure
 DESIGN NOTES:
 -------------
 
-CALENDAR:
+CALENDAR: {package}
 
-    -> read_events.py
-    -> create_events.py
-    -> set_up.py
+    -> read_events.py   {module}
+    -> create_events.py {module}
+    -> set_up.py        {module}
     
-    AUTHENTICATION:
+    AUTHENTICATION: {sub-package}
     
-        -> auth.py -> file with create_service():
+        -> auth.py      {module}
     
 main.py
