@@ -34,7 +34,7 @@ DESIGN NOTES:
 -------------
 
 CALENDAR:
--------
+
     -> read_events.py
     -> create_events.py
     -> set_up.py
