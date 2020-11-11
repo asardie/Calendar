@@ -43,4 +43,4 @@ CALENDAR: {package}
     
         -> auth.py      {module}
     
-main.py
+main.py {module}
