@@ -42,6 +42,5 @@ CALENDAR:
     AUTHENTICATION:
     
         -> auth.py -> file with create_service():
-    ---------------
     
 main.py
