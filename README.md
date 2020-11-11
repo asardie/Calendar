@@ -4,7 +4,7 @@ tasks: #if you complete a task. It will be removed it once code has been merged
 
 -> please, edit this file and make a pull request.("you can just add your name")
         
-        ssinazo :)
+        sinazo :)
 
 -> Read up on argparse {python3 module}. WILL BE IMPORTANT.
 
