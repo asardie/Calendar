@@ -33,6 +33,7 @@ tasks: #if you complete a task. It will be removed it once code has been merged
     return (True if free and False if not)
     references: https://developers.google.com/calendar/v3/reference/freebusy
                 https://developers.google.com/calendar/v3/reference/freebusy/query
+                
     
 ------------------------------------------------------------------------------
 
