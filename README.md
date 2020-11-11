@@ -35,7 +35,8 @@ DESIGN NOTES:
 
 BOOKING:
 
-    -> 
+    -> read_events.py
+    -> create_events.py
     
 AUTHENTICATION:
 
