@@ -33,17 +33,15 @@ And any sense of structure
 DESIGN NOTES:
 -------------
 
-BOOKING:
-
+CALENDAR:
+-------
     -> read_events.py
     -> create_events.py
-    
-AUTHENTICATION:
-
-    ->
-
-SET_UP
-
     -> set_up.py
+    
+    AUTHENTICATION:
+    
+        -> auth.py -> file with create_service():
+    ---------------
     
 main.py
