@@ -25,6 +25,15 @@ tasks: #if you complete a task. It will be removed it once code has been merged
     prototype: def print_day(day: int) -> text:
     arg: day {int}
     return: return day. {string} returns the day of the week as 'monday', 'tuesday', 'wednesday', etc
+    
+-> We need a function to check the users 'primary' calendar to see if they are free or busy:
+
+    prototype: def is_free(time: datetime.datetime) -> bool:
+    args: time {datetime.datetime}
+    return (True if free and False if not)
+    references: https://developers.google.com/calendar/v3/reference/freebusy
+                https://developers.google.com/calendar/v3/reference/freebusy/query
+    
 ------------------------------------------------------------------------------
 
 What we need:
