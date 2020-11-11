@@ -18,7 +18,13 @@ tasks: #if you complete a task. It will be removed it once code has been merged
     
     prototype: def day_of(time: datetime.datetime) -> string/int:
     arg: time {datetime.datetime}
-    return: string('monday', 'tuesday', etc) or int 1-7 numbering the days from monday(1) to sunday(7)
+    return: int 1-7 numbering the days from monday(1) to sunday(7)
+    
+-> We need a function that return the day as text:
+    
+    prototype: def print_day(day: int) -> text:
+    arg: day {int}
+    return: return day. {string} returns the day of the week as 'monday', 'tuesday', 'wednesday', etc
 ------------------------------------------------------------------------------
 
 What we need:
