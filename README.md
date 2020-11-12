@@ -3,6 +3,8 @@
 tasks: #if you complete a task. It will be removed it once code has been merged
 
 -> please, edit this file and make a pull request.("you can just add your name")
+        
+        sinazo :)
 
 -> Read up on argparse {python3 module}. WILL BE IMPORTANT.
 
@@ -18,7 +20,23 @@ tasks: #if you complete a task. It will be removed it once code has been merged
     
     prototype: def day_of(time: datetime.datetime) -> string/int:
     arg: time {datetime.datetime}
-    return: string('monday', 'tuesday', etc) or int 1-7 numbering the days from monday(1) to sunday(7)
+    return: int 1-7 numbering the days from monday(1) to sunday(7)
+    
+-> We need a function that return the day as text:
+    
+    prototype: def print_day(day: int) -> text:
+    arg: day {int}
+    return: return day. {string} returns the day of the week as 'monday', 'tuesday', 'wednesday', etc
+    
+-> We need a function to check the users 'primary' calendar to see if they are free or busy:
+
+    prototype: def is_free(time: datetime.datetime) -> bool:
+    args: time {datetime.datetime}
+    return (True if free and False if not)
+    references: https://developers.google.com/calendar/v3/reference/freebusy
+                https://developers.google.com/calendar/v3/reference/freebusy/query
+                
+    
 ------------------------------------------------------------------------------
 
 What we need:
