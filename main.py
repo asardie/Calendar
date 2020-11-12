@@ -1,5 +1,7 @@
 import argparse
 import sys
+import auth
+import view_events
 
 lst_flags = ["book_session", "volunteer", "available_slots", "help"]
 

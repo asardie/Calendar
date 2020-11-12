@@ -2,11 +2,10 @@ import auth
 import datetime
 
 
-def list_all_calendars():
+def list_all_calendars(service):
     """
     lists all the calendars that belong to the logged in user.
     """
-    service = auth.create_service()
     pt = None
     while 1:
         cal = service.calendarList().list(pageToken=pt).execute()
@@ -17,31 +16,35 @@ def list_all_calendars():
             break
 
 
-def list_events():
+def list_events(service):
     """Lists all events for the next seven days
     """
+
+    all_events = []
 
     s = datetime.datetime.now().isoformat() + 'Z'
     elapsed = datetime.timedelta(days=7)
     e = (datetime.datetime.now() + elapsed).isoformat() + 'Z'
 
-    service = auth.create_service()
-
     pt = None
     while 1:
         events = service.events().list(calendarId='primary',
                                        timeMin=s,
-                                       timeMax=e, pageToken=pt).execute()
+                                       timeMax=e, 
+                                       pageToken=pt).execute()
         for ev in events['items']:
             print(ev['summary'], ev['id'])
+            all_events.append(ev)
+
         pt = events.get('nextPageToken')
         if not pt:
             break
 
+    return all_events
 
-def get_event():
-    service = auth.create_service()
-    id = '4btsiajm17usupgkou04vdni3i'
+def get_event(service ,id=None):
+    if id == None:
+        raise Exception
     ev = service.events().get(calendarId='primary',
                               eventId=id).execute()
     # print(ev['attendees'])
@@ -55,5 +58,3 @@ def get_event():
     for i, a in enumerate(nev['attendees']):
         print(a)
 
-
-get_event()
