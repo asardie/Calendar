@@ -8,7 +8,7 @@ def get_time():
     time = input('would you like to volunteer in the morning or afternoon (AM/pm)?: ')
     while 1:
         if time.lower() == 'am':
-            posible_times = [(datetime.timedelta(hour=i//60, minute=(i%60))) for i in range(7*60, 12*60, 15)]
+            posible_times = [(datetime.time(hour=i//60, minute=(i%60))) for i in range(7*60, 12*60, 15)]
             break
         elif time.lower() == 'pm':
             posible_times = [(datetime.time(hour=i//60, minute=(i%60))) for i in range(12*60, 17*60, 15)]
