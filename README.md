@@ -19,16 +19,6 @@ tasks: #if you complete a task. It will be removed it once code has been merged
     
 ------------------------------------------------------------------------------
 
-What we need:
--------------
-We Still need a main...
-
-Some Way of getting user input
-
-Some way of validating input from the user.
-
-And any sense of structure
-
 
 DESIGN NOTES:
 -------------
