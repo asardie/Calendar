@@ -1,7 +1,6 @@
 import os
 import json
 import auth
-import requests
 import pickle
 import sys
 
@@ -34,7 +33,8 @@ def user_init():
     
     #----------------------GET USER INFO----------------------------
     user_info = {
-        'user_name': input("enter student email: "),
+        'email': f"{input('enter student email: ')}",
+        'user_name': f"{input('enter user_name: ')}",
     }
 
     #---------------------GET SHARED ACCESS TOKEN--------------------
@@ -44,7 +44,5 @@ def user_init():
 
     # ----------------------Write to file-----------------------------
     f = open(total_path+'/user.json', 'w')
-    f.write(str(user_info))
+    json.dump(user_info, f)
     f.close()
-
-user_init()
