@@ -42,11 +42,14 @@ def add_to_clinic_calander(time: datetime.datetime):
         'end': {
             'dateTime': (time + datetime.timedelta(minutes=30*(i+1))).isoformat()+"Z",
             'timeZone': 'America/Los_Angeles'
-        }}
+        },
+        'maxAttendees': 2,
+        'attendees': [
+            {'email': f"{users.get_email()}",
+            'organiser': True}
+            ],
+        'anyoneCanAddSelf': True,
+        }
 
         event = shared_service.events().insert(calendarId='primary', body=event).execute()
 
-
-posible_times = [f"{datetime.date.today()}T{datetime.timedelta(hours=i//60, minutes=(i%60))}Z" for i in range(7*60, 12*60, 15)]
-
-print(datetime.datetime.today())
