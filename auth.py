@@ -61,3 +61,6 @@ def create_shared_service():
     shared_service = build('calendar', 'v3', credentials=shared_creds)
 
     return shared_service        
+
+
+create_service()
