@@ -23,7 +23,19 @@ def get_time():
         if t.isdigit():
             return posible_times[int(t)]
 
-    
+
+def get_date():
+    days = {f"{i}":datetime.date.today()+datetime.timedelta(days=i) for i in range(7)}
+    for i in days:
+        print(i, days[i], sep=" : ")
+    while 1:
+        day = input('what day would you like to volunteer?: ')
+        if day in days:
+            break
+
+    return days[day]
+
+
 
 def add_to_clinic_calander(time: datetime.datetime):
     shared_service = auth.create_shared_service()
