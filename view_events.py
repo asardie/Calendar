@@ -33,8 +33,9 @@ def list_events(service):
                                        timeMax=e, 
                                        pageToken=pt).execute()
         for ev in events['items']:
-            print(ev['summary'], ev['id'])
-            all_events.append(ev)
+            if 'code_clinic' in ev['summary']:
+                print(ev['summary'], ev['id'])
+                all_events.append(ev)
 
         pt = events.get('nextPageToken')
         if not pt:
