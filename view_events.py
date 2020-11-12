@@ -42,6 +42,7 @@ def list_events(service):
 
     return all_events
 
+
 def get_event(service ,id=None):
     if id == None:
         raise Exception

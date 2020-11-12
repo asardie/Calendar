@@ -1,6 +1,7 @@
 import datetime
 import users
 import view_events
+import validation
 import auth
 
 def get_time():
@@ -25,13 +26,17 @@ def get_time():
 
 
 def get_date():
-    days = {f"{i}":datetime.date.today()+datetime.timedelta(days=i) for i in range(7)}
+    day_of = lambda i: validation.day_of(datetime.date.today()+datetime.timedelta(days=i))
+    date_f = lambda i: datetime.date.today()+datetime.timedelta(days=i)
+    days = {validation.print_day(day_of(i)):date_f(i) for i in range(7)}
     for i in days:
         print(i, days[i], sep=" : ")
     while 1:
-        day = input('what day would you like to volunteer?: ')
-        if day in days:
+        day = input('what day would you like to volunteer?: ').lower()
+        if day in days: 
             break
+        if day == 'quite':
+            return ''
 
     return days[day]
 
@@ -64,4 +69,3 @@ def add_to_clinic_calander(time: datetime.datetime):
         }
 
         event = shared_service.events().insert(calendarId='primary', body=event).execute()
-

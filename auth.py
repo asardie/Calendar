@@ -12,7 +12,6 @@ S = ['https://www.googleapis.com/auth/calendar']
 
 
 def create_service():
-    print(client_secret, client_token, shared_token, sep='\n')
     creds = None
     if os.path.exists(client_token):
         with open(client_token, 'rb') as token:
@@ -62,5 +61,3 @@ def create_shared_service():
 
     return shared_service        
 
-
-create_service()

@@ -24,6 +24,4 @@ def print_day(day):
     0 is monday and 6 is sunday
     """
     days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-    return days[day]
-
-# print(day_of(datetime.datetime(2020, 11, 9, 7, 0, 0)))
+    return days[day].lower()
