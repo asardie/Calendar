@@ -1,6 +1,7 @@
 import argparse
 import sys
 import auth
+import set_up
 import view_events
 import create_events
 import datetime
@@ -23,7 +24,7 @@ def create_booking():
         day = validation.day_of(datetime.datetime.strptime(date, '%Y-%m-%d'))
         day = validation.print_day(day)
         l = len(day)
-        print(f"{av[0]},     date: {day}{' '*(9-l)}-{date}     time: {time.split('+')[0]}     coverd topics: {av[1]},")
+        print(f"{i}-{av[0]},     date: {day}{' '*(9-l)}-{date}     time: {time.split('+')[0]}     coverd topics: {av[1]},")
     booking_id = input('Which code clinic would you like to add yourself to?: ')
     booking = available[int(booking_id)]
     create_events.update_event(booking[-1])
@@ -52,6 +53,8 @@ def run_clinic():
         volunteer()
     elif 'make_booking' in args:
         create_booking()
+    elif 'init' in args:
+        set_up.user_init()
 
 
 if __name__ == "__main__":
