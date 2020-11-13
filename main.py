@@ -30,9 +30,6 @@ def create_booking():
 
     print("booking has been created... <3")
 
-volunteer()
-print('-'*40)
-create_booking()
 
 
 def get_flag():
