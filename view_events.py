@@ -50,7 +50,6 @@ def get_event(service ,id=None):
         raise Exception
     ev = service.events().get(calendarId='primary',
                               eventId=id).execute()
-    # print(ev['attendees'])
     for i, a in enumerate(ev['attendees']):
         if 'self' in a:
             ev['attendees'][i]['responseStatus'] = 'accepted'

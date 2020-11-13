@@ -4,6 +4,7 @@ import auth
 import view_events
 import create_events
 import datetime
+import validation
 
 lst_flags = ["book_session", "volunteer", "available_slots", "start"]
 
@@ -17,10 +18,19 @@ def volunteer():
 def create_booking():
     shared_service = auth.create_shared_service()
     available = view_events.list_events(shared_service)
-    for av in available:
-        print(f"{av[0]}, coverd topics: {av[1]}, time: {av[2]['dateTime']}")
+    for i, av in enumerate(available):
+        date, time = av[2]['dateTime'].split('T')
+        day = validation.day_of(datetime.datetime.strptime(date, '%Y-%m-%d'))
+        day = validation.print_day(day)
+        l = len(day)
+        print(f"{i} - {av[0]},     date: {day}{' '*(9-l)}-{date}     time: {time.split('+')[0]}     coverd topics: {av[1]},")
+    booking_id = input('Which code clinic would you like to add yourself to?: ')
+    booking = available[int(booking_id)]
+    create_events.update_event(booking[-1])
 
-create_booking()
+    print("booking has been created... <3")
+
+
 
 def get_flag():
 

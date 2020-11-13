@@ -69,3 +69,9 @@ def add_to_clinic_calander(time: datetime.datetime):
         }
 
         event = shared_service.events().insert(calendarId='primary', body=event).execute()
+
+def update_event(id):
+    shared_service = auth.create_shared_service()
+    event = shared_service.events().get(calendarId='primary', eventId=id).execute()
+    event['attendees'] = event['attendees'] + [{'email': f"test.{users.get_email()}",}]
+    shared_service.events().update(calendarId='primary', eventId=event['id'], body=event).execute()
