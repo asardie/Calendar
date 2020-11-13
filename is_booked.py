@@ -5,15 +5,14 @@ SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 
 def is_booked(date_time):
-    """Shows basic usage of the Google Calendar API.
-    Prints the start and name of the next 10 events on the user's calendar.
+    """
+    Retuns true if the slot is booked.
     """
     bookings = {}
     auth.create_service()
 
     # Call the Calendar API
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    print('Getting the upcoming 10 events')
     events_result = service.events().list(calendarId='primary', timeMin=now,
                                         maxResults=100, singleEvents=True,
                                         orderBy='startTime').execute()
