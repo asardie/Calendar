@@ -23,7 +23,7 @@ def create_booking():
         day = validation.day_of(datetime.datetime.strptime(date, '%Y-%m-%d'))
         day = validation.print_day(day)
         l = len(day)
-        print(f"{i} - {av[0]},     date: {day}{' '*(9-l)}-{date}     time: {time.split('+')[0]}     coverd topics: {av[1]},")
+        print(f"{av[0]},     date: {day}{' '*(9-l)}-{date}     time: {time.split('+')[0]}     coverd topics: {av[1]},")
     booking_id = input('Which code clinic would you like to add yourself to?: ')
     booking = available[int(booking_id)]
     create_events.update_event(booking[-1])
@@ -46,8 +46,12 @@ def get_flag():
     return flag
 
 def run_clinic():
-    flag = get_flag()
+    args = [s.lower() for s in sys.argv]
 
+    if 'volunteer' in args:
+        volunteer()
+    elif 'make_booking' in args:
+        create_booking()
 
 
 if __name__ == "__main__":
