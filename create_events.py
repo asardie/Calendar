@@ -1,13 +1,14 @@
 import datetime
 import users
 import view_events
+import validation
 import auth
 
 def get_time():
     time = input('would you like to volunteer in the morning or afternoon (AM/pm)?: ')
     while 1:
         if time.lower() == 'am':
-            posible_times = [(datetime.timedelta(hour=i//60, minute=(i%60))) for i in range(7*60, 12*60, 15)]
+            posible_times = [(datetime.time(hour=i//60, minute=(i%60))) for i in range(7*60, 12*60, 15)]
             break
         elif time.lower() == 'pm':
             posible_times = [(datetime.time(hour=i//60, minute=(i%60))) for i in range(12*60, 17*60, 15)]
@@ -25,13 +26,17 @@ def get_time():
 
 
 def get_date():
-    days = {f"{i}":datetime.date.today()+datetime.timedelta(days=i) for i in range(7)}
+    day_of = lambda i: validation.day_of(datetime.date.today()+datetime.timedelta(days=i))
+    date_f = lambda i: datetime.date.today()+datetime.timedelta(days=i)
+    days = {validation.print_day(day_of(i)):date_f(i) for i in range(7)}
     for i in days:
         print(i, days[i], sep=" : ")
     while 1:
-        day = input('what day would you like to volunteer?: ')
-        if day in days:
+        day = input('what day would you like to volunteer?: ').lower()
+        if day in days: 
             break
+        if day == 'quite':
+            return ''
 
     return days[day]
 
@@ -65,3 +70,8 @@ def add_to_clinic_calander(time: datetime.datetime):
 
         event = shared_service.events().insert(calendarId='primary', body=event).execute()
 
+def update_event(id):
+    shared_service = auth.create_shared_service()
+    event = shared_service.events().get(calendarId='primary', eventId=id).execute()
+    event['attendees'] = event['attendees'] + [{'email': f"test.{users.get_email()}",}]
+    shared_service.events().update(calendarId='primary', eventId=event['id'], body=event).execute()

@@ -30,12 +30,13 @@ def list_events(service):
     while 1:
         events = service.events().list(calendarId='primary',
                                        timeMin=s,
-                                       timeMax=e, 
+                                       timeMax=e,
                                        pageToken=pt).execute()
+
         for ev in events['items']:
             if 'code_clinic' in ev['summary']:
-                print(ev['summary'], ev['id'])
-                all_events.append(ev)
+                appointment = (ev['summary'], ev['description'],ev['start'], ev['id'])
+                all_events.append(appointment)
 
         pt = events.get('nextPageToken')
         if not pt:
@@ -43,12 +44,12 @@ def list_events(service):
 
     return all_events
 
+
 def get_event(service ,id=None):
     if id == None:
         raise Exception
     ev = service.events().get(calendarId='primary',
                               eventId=id).execute()
-    # print(ev['attendees'])
     for i, a in enumerate(ev['attendees']):
         if 'self' in a:
             ev['attendees'][i]['responseStatus'] = 'accepted'
