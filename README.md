@@ -34,3 +34,7 @@ CALENDAR: {package}
         -> auth.py      {module}
     
 main.py {module}
+
+
+#setup
+run: pip3 install -r requriments.txt
