@@ -17,4 +17,5 @@ main.py {module}
 
 
 #setup
-run: pip3 install -r requriments.txt
+
+    run: python3 -m pip install -r requriments.txt
