@@ -12,10 +12,8 @@ def make_path(path):
 
     no return
     """
-    user = os.path.expanduser('~')
-    total_path = "/".join([user, path])
-    if not os.path.exists(total_path):
-        os.makedirs(total_path)
+    if not os.path.exists(path):
+        os.makedirs(path)
 
 
 def user_init():
@@ -26,12 +24,12 @@ def user_init():
     path = '.config/codeClinic'
     total_path = "/".join([user, path])
 
-    make_path(path)
+    make_path(total_path)
 
     # ----------------------GET USER INFO----------------------------
     user_info = {'email': f"{input('enter student email: ')}",
                  'user_name': f"{input('enter user_name: ')}",
-}
+                 }
 
     # ---------------------GET SHARED ACCESS TOKEN--------------------
     if not os.path.exists('shared_token.pickle'):

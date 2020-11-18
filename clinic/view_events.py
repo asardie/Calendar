@@ -34,8 +34,7 @@ def list_events(service):
 
         for ev in events['items']:
             if 'code_clinic' in ev['summary']:
-                appointment = (ev['summary'], ev['description'],ev['start'], ev['id'])
-                all_events.append(appointment)
+                all_events.append(ev)
 
         pt = events.get('nextPageToken')
         if not pt:

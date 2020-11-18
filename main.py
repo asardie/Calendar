@@ -5,28 +5,36 @@ import sys
 
 def volunteer():
     time = clinic.get_time()
-    day = clinic.get_date()
-    volunteer_time = datetime.datetime.combine(day, time)
-    clinic.add_to_clinic_calander(volunteer_time)
+    clinic.add_to_clinic_calander(time)
 
 
 def create_booking():
+    """
+    Allows a user to list the currently running clinics for the next
+    7 days and choose a clinic to be a part of.
+
+    """
     shared_service = clinic.create_shared_service()
     available = clinic.list_events(shared_service)
-    for i, av in enumerate(available):
-        date, time = av[2]['dateTime'].split('T')
-        day = clinic.day_of(datetime.datetime.strptime(date, '%Y-%m-%d'))
-        day = clinic.print_day(day)
-        a = f"{i}-{av[0]},     date: {day}{' '*(9-len(day))}-{date}     "
-        b = f"time: {time.split('+')[0]}     coverd topics: {av[1]},"
-        print(a+b)
 
+    a = 'summary'+' '*14, 'topics'+ ' '*24, 'date'+' '*6, 'time'
+
+    print(f" |{'-'*80}|")
+    print('',*a,'', sep=' | ')
+    print(f" |{'-'*80}|")
+    for i, av in enumerate(available):
+        date, time = av['start']['dateTime'].split('T')
+        a = av['summary'], av['description']+' '*(30-len(av['description'])), date, time.split('+')[0]
+        print('', *a, '', sep=' | ')
+        print(f" |{'-'*80}|")
+
+    return
     booking_id = input('Which code clinic would you like attend?: ')
     booking = available[int(booking_id)]
     clinic.update_event(booking[-1])
 
     print("booking has been created... <3")
-
+create_booking()
 
 def run_clinic():
     args = [s.lower() for s in sys.argv]
@@ -40,5 +48,4 @@ def run_clinic():
 
 
 if __name__ == "__main__":
-    # run_clinic()
-    clinic.get_time()
+    run_clinic()

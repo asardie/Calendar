@@ -10,13 +10,12 @@ def get_time():
 
     time = '/'.join([str(year), date, time])
     time = datetime.datetime.strptime(time, '%Y/%m/%d/%H:%M')
-    return time.isoformat() + 'Z'
+    return time
 
 
 def add_to_clinic_calander(time: datetime.datetime):
     shared_service = clinic.create_shared_service()
 
-    loc = input('jhb or cpt: ')
     desc = input('What topics are you willing to cover: ')
     for i in range(3):
         start = (time + datetime.timedelta(minutes=30*i))
@@ -24,14 +23,14 @@ def add_to_clinic_calander(time: datetime.datetime):
 
         event = {
             'summary': f"{' - '.join(['code_clinic', clinic.get_username()])}",
-            'location': f"{loc}",
+            'location': "WeThinkCode_HQ",
             'description': f"{desc}",
             'start': {
-                'dateTime': start.isoformat() + "Z",
+                'dateTime': start.isoformat() + "+02:00",
                 'timeZone': 'America/Los_Angeles',
             },
             'end': {
-                'dateTime': end.isoformat()+"Z",
+                'dateTime': end.isoformat()+"+02:00",
                 'timeZone': 'America/Los_Angeles'
             },
             'maxAttendees': 2,
