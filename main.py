@@ -1,50 +1,32 @@
-import argparse
-import sys
-import auth
-import set_up
-import view_events
-import create_events
+import clinic
 import datetime
-import validation
-
-lst_flags = ["book_session", "volunteer", "available_slots", "start"]
+import sys
 
 
 def volunteer():
-    time = create_events.get_time()
-    day = create_events.get_date()
+    time = clinic.get_time()
+    day = clinic.get_date()
     volunteer_time = datetime.datetime.combine(day, time)
-    create_events.add_to_clinic_calander(volunteer_time)
+    clinic.add_to_clinic_calander(volunteer_time)
+
 
 def create_booking():
-    shared_service = auth.create_shared_service()
-    available = view_events.list_events(shared_service)
+    shared_service = clinic.create_shared_service()
+    available = clinic.list_events(shared_service)
     for i, av in enumerate(available):
         date, time = av[2]['dateTime'].split('T')
-        day = validation.day_of(datetime.datetime.strptime(date, '%Y-%m-%d'))
-        day = validation.print_day(day)
-        l = len(day)
-        print(f"{i}-{av[0]},     date: {day}{' '*(9-l)}-{date}     time: {time.split('+')[0]}     coverd topics: {av[1]},")
-    booking_id = input('Which code clinic would you like to add yourself to?: ')
+        day = clinic.day_of(datetime.datetime.strptime(date, '%Y-%m-%d'))
+        day = clinic.print_day(day)
+        a = f"{i}-{av[0]},     date: {day}{' '*(9-len(day))}-{date}     "
+        b = f"time: {time.split('+')[0]}     coverd topics: {av[1]},"
+        print(a+b)
+
+    booking_id = input('Which code clinic would you like attend?: ')
     booking = available[int(booking_id)]
-    create_events.update_event(booking[-1])
+    clinic.update_event(booking[-1])
 
     print("booking has been created... <3")
 
-
-
-def get_flag():
-
-    flag = argparse.ArgumentParser(description='Run Code Clinic. Here is a list of valid commands:')
-    flag.add_argument('init',help='Authenticates user')
-    flag.add_argument('volunteer',help='Volunteer as a clinician')
-    flag.add_argument('book_session',help='Book a session with an available clinician.')
-    flag.add_argument('start', help='Runs the clinic application as a shell')
-
-    # if flag not in lst_flags:
-    #     return get_flag()
-    
-    return flag
 
 def run_clinic():
     args = [s.lower() for s in sys.argv]
@@ -54,8 +36,9 @@ def run_clinic():
     elif 'make_booking' in args:
         create_booking()
     elif 'init' in args:
-        set_up.user_init()
+        clinic.user_init()
 
 
 if __name__ == "__main__":
-    run_clinic()
+    # run_clinic()
+    clinic.get_time()

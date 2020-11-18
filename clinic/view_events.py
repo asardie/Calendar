@@ -1,4 +1,3 @@
-import auth
 import datetime
 
 
@@ -43,20 +42,3 @@ def list_events(service):
             break
 
     return all_events
-
-
-def get_event(service ,id=None):
-    if id == None:
-        raise Exception
-    ev = service.events().get(calendarId='primary',
-                              eventId=id).execute()
-    for i, a in enumerate(ev['attendees']):
-        if 'self' in a:
-            ev['attendees'][i]['responseStatus'] = 'accepted'
-
-    nev = service.events().update(calendarId='primary',
-                                  eventId=id, body=ev).execute()
-
-    for i, a in enumerate(nev['attendees']):
-        print(a)
-

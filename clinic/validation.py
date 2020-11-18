@@ -1,5 +1,6 @@
 import datetime
 
+
 def is_time_valid(time):
     """
     checks to see if a time is within a givent the range 7am to 6pm
@@ -18,10 +19,12 @@ def day_of(time):
     """
     return time.weekday()
 
+
 def print_day(day):
     """
     return the day as text
     0 is monday and 6 is sunday
     """
-    days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    days = ['Monday', 'Tuesday', 'Wednesday',
+            'Thursday', 'Friday', 'Saturday', 'Sunday']
     return days[day].lower()

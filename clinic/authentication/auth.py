@@ -5,9 +5,10 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
-client_secret = os.path.expanduser("~") + '/' + '.config/codeClinic/client_secret.json'
-shared_token = os.path.expanduser("~") + '/' + '.config/codeClinic/shared_token.pickle'
-client_token = os.path.expanduser("~") + '/' + '.config/codeClinic/token.pickle'
+path = os.path.expanduser("~") + '/.config/codeClinic/'
+client_secret = path + 'client_secret.json'
+shared_token = path + 'shared_token.pickle'
+client_token = path + 'token.pickle'
 S = ['https://www.googleapis.com/auth/calendar']
 
 
@@ -22,7 +23,7 @@ def create_service():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file('client_secret.json', S)
+            flow = InstalledAppFlow.from_client_secrets_file(client_secret, S)
             creds = flow.run_local_server(port=0)
 
         with open(client_token, 'wb') as token:
@@ -31,6 +32,7 @@ def create_service():
     service = build('calendar', 'v3', credentials=creds)
 
     return service
+
 
 def create_shared_service():
     """
@@ -51,7 +53,7 @@ def create_shared_service():
             shared_creds = pickle.load(token)
 
     if not shared_creds or not shared_creds.valid:
-        if shared_creds and shared_creds.expired and shared_creds.refresh_token:
+        if shared_creds and shared_creds.refresh_token:
             shared_creds.refresh(Request())
 
         with open(shared_token, 'wb') as token:
@@ -59,5 +61,4 @@ def create_shared_service():
 
     shared_service = build('calendar', 'v3', credentials=shared_creds)
 
-    return shared_service        
-
+    return shared_service
