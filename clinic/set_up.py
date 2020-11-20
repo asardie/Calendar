@@ -1,6 +1,5 @@
 import os
 import json
-import pickle
 
 
 def make_path(path):
@@ -34,7 +33,8 @@ def user_init():
     # ---------------------GET SHARED ACCESS TOKEN--------------------
     if not os.path.exists('shared_token.pickle'):
         print("downloading access token.")
-        os.system("wget https://github.com/asardie/Calendar/raw/main/shared_token.pickle > ~/.config/codeClinic/shared_token.pickle")
+        git_file = 'https://github.com/asardie/Calendar/raw/main/shared_token.pickle'
+        os.system(f"wget {git_file} > ~/.config/codeClinic/shared_token.pickle")
 
     # ----------------------Write to file-----------------------------
     f = open(total_path+'/user.json', 'w')

@@ -1,9 +1,11 @@
 import clinic
-import datetime
 import sys
 
 
 def volunteer():
+    """
+    allows a user to specify a time and date to volunteer as a code clinicion
+    """
     time = clinic.get_time()
     clinic.add_to_clinic_calander(time)
 
@@ -17,24 +19,21 @@ def create_booking():
     shared_service = clinic.create_shared_service()
     available = clinic.list_events(shared_service)
 
-    a = 'summary'+' '*14, 'topics'+ ' '*24, 'date'+' '*6, 'time'
+    clinic.print_events(available)
 
-    print(f" |{'-'*80}|")
-    print('',*a,'', sep=' | ')
-    print(f" |{'-'*80}|")
-    for i, av in enumerate(available):
-        date, time = av['start']['dateTime'].split('T')
-        a = av['summary'], av['description']+' '*(30-len(av['description'])), date, time.split('+')[0]
-        print('', *a, '', sep=' | ')
-        print(f" |{'-'*80}|")
-
-    return
-    booking_id = input('Which code clinic would you like attend?: ')
+    booking_id = input('Please enter a booking ID: ')
     booking = available[int(booking_id)]
-    clinic.update_event(booking[-1])
+    clinic.add_as_attendee(shared_service, booking['id'])
 
     print("booking has been created... <3")
-create_booking()
+
+
+def view_bookings():
+
+    service = clinic.create_service()
+    f = clinic.list_events(service)
+    clinic.print_events(f)
+
 
 def run_clinic():
     args = [s.lower() for s in sys.argv]
@@ -43,6 +42,8 @@ def run_clinic():
         volunteer()
     elif 'make_booking' in args:
         create_booking()
+    elif 'view' in args:
+        view_bookings()
     elif 'init' in args:
         clinic.user_init()
 

@@ -4,3 +4,4 @@ from .view_events import *
 from .users import *
 from .validation import *
 from .authentication import *
+from .output import *

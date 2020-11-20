@@ -27,11 +27,9 @@ def add_to_clinic_calander(time: datetime.datetime):
             'description': f"{desc}",
             'start': {
                 'dateTime': start.isoformat() + "+02:00",
-                'timeZone': 'America/Los_Angeles',
             },
             'end': {
                 'dateTime': end.isoformat()+"+02:00",
-                'timeZone': 'America/Los_Angeles'
             },
             'maxAttendees': 2,
             'attendees': [
@@ -45,9 +43,8 @@ def add_to_clinic_calander(time: datetime.datetime):
                                                body=event).execute()
 
 
-def update_event(id):
-    shared_service = clinic.create_shared_service()
-    event = shared_service.events().get(calendarId='primary',
+def add_as_attendee(service, id):
+    event = service.events().get(calendarId='primary',
                                         eventId=id).execute()
     event['attendees'] += ([{'email': f"test.{clinic.get_email()}"}])
 

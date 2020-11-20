@@ -15,7 +15,7 @@ def list_all_calendars(service):
             break
 
 
-def list_events(service):
+def list_events(service, only_available=False):
     """Lists all events for the next seven days
     """
 
@@ -28,8 +28,7 @@ def list_events(service):
     pt = None
     while 1:
         events = service.events().list(calendarId='primary',
-                                       timeMin=s,
-                                       timeMax=e,
+                                       timeMin=s, timeMax=e,
                                        pageToken=pt).execute()
 
         for ev in events['items']:
