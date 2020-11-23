@@ -48,5 +48,5 @@ def add_as_attendee(service, id):
                                         eventId=id).execute()
     event['attendees'] += ([{'email': f"test.{clinic.get_email()}"}])
 
-    shared_service.events().update(calendarId='primary',
-                                   eventId=event['id'], body=event).execute()
+    service.events().update(calendarId='primary',
+                            eventId=event['id'], body=event).execute()
