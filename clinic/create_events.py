@@ -45,7 +45,7 @@ def add_to_clinic_calander(time: datetime.datetime):
 
 def add_as_attendee(service, id):
     event = service.events().get(calendarId='primary',
-                                        eventId=id).execute()
+                                 eventId=id).execute()
     event['attendees'] += ([{'email': f"test.{clinic.get_email()}"}])
 
     service.events().update(calendarId='primary',
