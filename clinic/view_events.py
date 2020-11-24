@@ -44,7 +44,7 @@ def list_events(service, only_available=False):
 def is_booked(event_id):
     """
     args: event_id
-    return: True if event has two attendees.
+    return: True if event has two attendees
     """
     
     event = service.events().get(calendarId='primary', eventId=event_id).execute()
