@@ -35,6 +35,5 @@ def is_email_wethinkcode(email):
     """
     checks if email is a WETHINKCODE email
     """
-    regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]?[student.]*wethinkcode.co.za$'
-    return True if re.search(regex,email) else False
-
+    regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]?[student.]*wethinkcode.co.za$'
+    return True if re.search(regex, email) else False

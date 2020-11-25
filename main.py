@@ -43,6 +43,11 @@ def view_bookings():
 
 
 def cancel_patient():
+    '''
+    removes the patient (the last appended attendee)
+    from the attendee list to an event
+    '''
+
     service = clinic.create_service()
     shared_service = clinic.create_shared_service()
     ev = clinic.list_events(service)
@@ -50,13 +55,24 @@ def cancel_patient():
     ev_id = input("please enter an event Id to cancel: ")
     ev_id = int(ev_id)
 
-    event = shared_service.events().get(calendarId='primary', eventId=ev[ev_id]['id']).execute()
+    event = shared_service.events().get(calendarId='primary',
+                                        eventId=ev[ev_id]['id']).execute()
 
     event['attendees'].pop()
 
     shared_service.events().update(calendarId='primary',
                                    eventId=ev[ev_id]['id'],
                                    body=event).execute()
+
+
+def cancel_doctor():
+    # TODO
+    pass
+
+
+def do_help():
+    # TODO
+    pass
 
 
 def run_clinic():
@@ -70,6 +86,10 @@ def run_clinic():
         view_bookings()
     elif 'cancel' in args:
         cancel_patient()
+    elif 'delete' in args:
+        cancel_doctor()
+    elif 'help' in args or '-h' in args:
+        do_help()
     elif 'init' in args:
         clinic.user_init()
 
