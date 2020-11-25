@@ -19,7 +19,6 @@ def create_booking():
     Allows a user to list the currently running clinics for the next
     7 days and choose a clinic to be a part of.
     """
-
     shared_service = clinic.create_shared_service()
     available = clinic.list_events(shared_service)
 
@@ -42,6 +41,23 @@ def view_bookings():
     clinic.print_events(f, service)
 
 
+def cancel_patient():
+    service = clinic.create_service()
+    shared_service = clinic.create_shared_service()
+    ev = clinic.list_events(service)
+    clinic.print_events(ev)
+    ev_id = input("please enter an event Id to cancel: ")
+    ev_id = int(ev_id)
+
+    event = shared_service.events().get(calendarId='primary', eventId=ev[ev_id]['id']).execute()
+
+    event['attendees'].pop()
+
+    shared_service.events().update(calendarId='primary',
+                                   eventId=ev[ev_id]['id'],
+                                   body=event).execute()
+
+
 def run_clinic():
     args = [s.lower() for s in sys.argv]
 
@@ -57,3 +73,4 @@ def run_clinic():
 
 if __name__ == "__main__":
     run_clinic()
+    cancel_patient()

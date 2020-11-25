@@ -7,7 +7,7 @@ def is_time_valid(time):
     checks to see if a time is within a givent the range 7am to 6pm
     """
     start = datetime.time(7, 0, 0)
-    end = datetime.time(18, 0, 0)
+    end = datetime.time(15, 0, 0)
     if time >= start and time < end:
         return True
     else:
