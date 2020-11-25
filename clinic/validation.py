@@ -1,4 +1,5 @@
 import datetime
+import re
 
 
 def is_time_valid(time):
@@ -6,7 +7,7 @@ def is_time_valid(time):
     checks to see if a time is within a givent the range 7am to 6pm
     """
     start = datetime.time(7, 0, 0)
-    end = datetime.time(18, 0, 0)
+    end = datetime.time(15, 0, 0)
     if time >= start and time < end:
         return True
     else:
@@ -28,3 +29,11 @@ def print_day(day):
     days = ['Monday', 'Tuesday', 'Wednesday',
             'Thursday', 'Friday', 'Saturday', 'Sunday']
     return days[day].lower()
+
+
+def is_email_wethinkcode(email):
+    """
+    checks if email is a WETHINKCODE email
+    """
+    regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]?[student.]*wethinkcode.co.za$'
+    return True if re.search(regex, email) else False
