@@ -57,7 +57,6 @@ def cancel_patient():
                                    body=event).execute()
 
 
-
 def run_clinic():
     args = [s.lower() for s in sys.argv]
 
