@@ -26,8 +26,7 @@ def create_booking():
     clinic.print_events(available, shared_service)
 
     booking_id = input('Please enter a booking ID: ')
-    booking = available[int(booking_id)]
-    while 
+    booking = available[int(booking_id)] 
     clinic.add_as_attendee(shared_service, booking['id'])
 
     print("booking has been created... <3")

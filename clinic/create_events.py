@@ -1,5 +1,6 @@
 import datetime
 import clinic
+import clinic.validation as validation
 
 
 def get_time():
@@ -10,6 +11,10 @@ def get_time():
 
     time = '/'.join([str(year), date, time])
     time = datetime.datetime.strptime(time, '%Y/%m/%d/%H:%M')
+    while not validation.is_time_valid(time.time()):
+        time = input("Please enter time between 7:00 and 18:00 in the following format(hh:mm) ")
+        time = '/'.join([str(year), date, time])
+        time = datetime.datetime.strptime(time, '%Y/%m/%d/%H:%M')
     return time
 
 
@@ -46,7 +51,6 @@ def add_to_clinic_calander(time: datetime.datetime):
 def add_as_attendee(service, id):
     event = service.events().get(calendarId='primary',
                                         eventId=id).execute()
-    if not
     event['attendees'] += ([{'email': f"test.{clinic.get_email()}"}])
 
     service.events().update(calendarId='primary',
