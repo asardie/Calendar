@@ -17,9 +17,9 @@ def add_to_clinic_calander(time: datetime.datetime):
     shared_service = clinic.create_shared_service()
 
     desc = input('What topics are you willing to cover: ')
-    for i in range(3):
+    for i in range(1):
         start = (time + datetime.timedelta(minutes=30*i))
-        end = (time + datetime.timedelta(minutes=30*(i+1)))
+        end = (time + datetime.timedelta(minutes=30))
 
         event = {
             'summary': f"{' - '.join(['code_clinic', clinic.get_username()])}",
@@ -46,6 +46,7 @@ def add_to_clinic_calander(time: datetime.datetime):
 def add_as_attendee(service, id):
     event = service.events().get(calendarId='primary',
                                         eventId=id).execute()
+    if not
     event['attendees'] += ([{'email': f"test.{clinic.get_email()}"}])
 
     service.events().update(calendarId='primary',
