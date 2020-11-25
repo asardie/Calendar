@@ -26,10 +26,11 @@ def create_booking():
 
     booking_id = input('Please enter a booking ID: ')
     booking = available[int(booking_id)]
-    while 
-    clinic.add_as_attendee(shared_service, booking['id'])
-
-    print("booking has been created... <3")
+    if len(booking['attendees']) < 2:
+        clinic.add_as_attendee(shared_service, booking['id'])
+        print("booking has been created... <3")
+    else:
+        print("slot already booked...")
 
 
 def view_bookings():
@@ -45,7 +46,7 @@ def cancel_patient():
     service = clinic.create_service()
     shared_service = clinic.create_shared_service()
     ev = clinic.list_events(service)
-    clinic.print_events(ev)
+    clinic.print_events(ev, service)
     ev_id = input("please enter an event Id to cancel: ")
     ev_id = int(ev_id)
 
@@ -67,10 +68,11 @@ def run_clinic():
         create_booking()
     elif 'view_bookings' in args:
         view_bookings()
+    elif 'cancel' in args:
+        cancel_patient()
     elif 'init' in args:
         clinic.user_init()
 
 
 if __name__ == "__main__":
     run_clinic()
-    cancel_patient()
