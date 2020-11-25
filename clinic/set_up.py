@@ -1,5 +1,6 @@
 import os
 import json
+import clinic.validation as validation
 
 
 def make_path(path):
@@ -26,8 +27,12 @@ def user_init():
     make_path(total_path)
 
     # ----------------------GET USER INFO----------------------------
-    user_info = {'email': f"{input('enter student email: ')}",
-                 'user_name': f"{input('enter user_name: ')}",
+    email = input('enter student email: ')
+    while not validation.is_email_wethinkcode(email):        
+        email = input("Please enter your WeThinkCode email: ")
+
+    user_info = {'email': email,
+                 'user_name': email.split('@')[0],
                  }
 
     # ---------------------GET SHARED ACCESS TOKEN--------------------

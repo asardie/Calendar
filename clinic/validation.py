@@ -1,4 +1,5 @@
 import datetime
+import re
 
 
 def is_time_valid(time):
@@ -28,3 +29,12 @@ def print_day(day):
     days = ['Monday', 'Tuesday', 'Wednesday',
             'Thursday', 'Friday', 'Saturday', 'Sunday']
     return days[day].lower()
+
+
+def is_email_wethinkcode(email):
+    """
+    checks if email is a WETHINKCODE email
+    """
+    regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]?[student.]*wethinkcode.co.za$'
+    return True if re.search(regex,email) else False
+
