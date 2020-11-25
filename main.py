@@ -1,5 +1,6 @@
 import clinic
 import sys
+import clinic.view_events as events
 
 
 def volunteer():
@@ -63,11 +64,28 @@ def cancel_patient():
     shared_service.events().update(calendarId='primary',
                                    eventId=ev[ev_id]['id'],
                                    body=event).execute()
+    print("Successfully cancelled the booking")
 
 
 def cancel_doctor():
-    # TODO
-    pass
+    """
+    Checks if the event the doctor wants to delete is not yet booked by a 
+    patient and if not; deletes it.
+    """
+    
+    service = clinic.create_service()
+    shared_service = clinic.create_shared_service()
+    ev = clinic.list_events(service)
+    clinic.print_events(ev, service)
+    ev_id = input("please enter a appointment Number to cancel: ")
+    event = shared_service.events().get(calendarId='primary',
+                                        eventId=ev[int(ev_id)]['id']).execute()
+    if events.is_booked(event):
+        print("You may not cancel an appointment that is already booked by a patient")
+    else:
+        shared_service.events().delete(calendarId='primary', eventId=ev[int(ev_id)]['id']).execute()
+        print("Successfully cancelled the appointment")
+
 
 
 def do_help():
