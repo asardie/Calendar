@@ -23,10 +23,11 @@ def create_booking():
     shared_service = clinic.create_shared_service()
     available = clinic.list_events(shared_service)
 
-    clinic.print_events(available)
+    clinic.print_events(available, shared_service)
 
     booking_id = input('Please enter a booking ID: ')
     booking = available[int(booking_id)]
+    while 
     clinic.add_as_attendee(shared_service, booking['id'])
 
     print("booking has been created... <3")
@@ -38,7 +39,7 @@ def view_bookings():
     """
     service = clinic.create_service()
     f = clinic.list_events(service)
-    clinic.print_events(f)
+    clinic.print_events(f, service)
 
 
 def run_clinic():
