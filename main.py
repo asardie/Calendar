@@ -66,8 +66,17 @@ def cancel_patient():
 
 
 def cancel_doctor():
-    # TODO
-    pass
+    service = clinic.create_service()
+    shared_service = clinic.create_shared_service()
+    ev = clinic.list_events(service)
+    clinic.print_events(ev, service)
+    ev_id = input("please enter an event Id to cancel: ")
+    ev_id = int(ev_id)
+
+    event = shared_service.events().get(calendarId='primary',
+                                        eventId=ev[ev_id]['id']).execute()
+
+    service.events().delete(calendarId='primary', eventId='eventId').execute()
 
 
 def do_help():
