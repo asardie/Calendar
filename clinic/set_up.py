@@ -38,8 +38,8 @@ def user_init():
     # ---------------------GET SHARED ACCESS TOKEN--------------------
     if not os.path.exists('shared_token.pickle'):
         print("downloading access token.")
-        git_file = 'https://github.com/asardie/Calendar/raw/main/shared_token.pickle'
-        os.system(f"wget {git_file} > ~/.config/codeClinic/shared_token.pickle")
+        gf = 'https://github.com/asardie/Calendar/raw/main/shared_token.pickle'
+        os.system(f"wget {gf} > ~/.config/codeClinic/shared_token.pickle")
 
     # ----------------------Write to file-----------------------------
     f = open(total_path+'/user.json', 'w')

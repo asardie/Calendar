@@ -4,18 +4,22 @@ import clinic.validation as validation
 
 
 def get_time():
+    """
+    converts user input from string to datetime object.
+    """
     year = datetime.datetime.now().year
 
-    date = input("What date would you like to volunteer? (mm/dd) ")
-    time = input("What time would you like to volunteer? (hh:mm) ")
+    while 1:
+        date = input("What date would you like to volunteer? (mm/dd) ")
+        time = input("What time would you like to volunteer? (hh:mm) ")
 
-    time = '/'.join([str(year), date, time])
-    time = datetime.datetime.strptime(time, '%Y/%m/%d/%H:%M')
-    while not validation.is_time_valid(time.time()):
-        time = input("Please enter time between 7:00 and 18:00 in the following format(hh:mm) ")
         time = '/'.join([str(year), date, time])
         time = datetime.datetime.strptime(time, '%Y/%m/%d/%H:%M')
-    return time
+        while not validation.is_time_valid(time.time()):
+            time = input("Please enter time between 7:00 and 18:00 in the following format(hh:mm) ")
+            time = '/'.join([str(year), date, time])
+            time = datetime.datetime.strptime(time, '%Y/%m/%d/%H:%M')
+        return time
 
 
 def add_to_clinic_calander(time: datetime.datetime):

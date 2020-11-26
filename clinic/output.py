@@ -4,7 +4,8 @@ import clinic.view_events as events
 
 def print_events(available, service):
 
-    a = 'id', ' summary'+' '*13, ' topics'+' '*23, ' date'+' '*5, ' time'+' '*3, ' status' + ' '*5
+    a = 'id', ' summary'+' '*13, ' topics'+' '*23
+    a += ' date'+' '*5, ' time'+' '*3, ' status' + ' '*5
 
     print(f" |{'-'*100}|")
     print('', *a, '', sep=' | ')
@@ -14,7 +15,7 @@ def print_events(available, service):
         time = time.split('+')[0]
         length = len(av['description'])
         id_n = str(i)+' '*(2-len(str(i)))
-        if not events.is_booked(av['id'], service):
+        if not events.is_booked(av):
             available = "Available   "
         else:
             available = "Booked      "
