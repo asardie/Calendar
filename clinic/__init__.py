@@ -5,3 +5,4 @@ from .users import *
 from .validation import *
 from .authentication import *
 from .output import *
+from .colors import *
