@@ -1,6 +1,17 @@
 import datetime
 import clinic.view_events as events
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 
 def print_events(available, service):
 
@@ -16,9 +27,10 @@ def print_events(available, service):
         length = len(av['description'])
         id_n = str(i)+' '*(2-len(str(i)))
         if not events.is_booked(av):
-            available = "Available   "
+            # available = f"{bcolors.OKCYAN}Available   "{bcolors.ENDC}"
+            available = f"{bcolors.OKGREEN}Available   {bcolors.ENDC}"
         else:
-            available = "Booked      "
+            available = f"{bcolors.FAIL}Booked      {bcolors.ENDC}"
         a = id_n, av['summary'], av['description']+' '*(30-length), date, time, available
         print('', *a, '', sep=' | ')
         print(f" |{'-'*100}|")
