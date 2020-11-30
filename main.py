@@ -12,6 +12,7 @@ def volunteer():
 
     time = clinic.get_time()
     clinic.add_to_clinic_calander(time)
+    print('your booking has been added, Thank You!')
 
 
 def create_booking():
@@ -72,7 +73,7 @@ def cancel_doctor():
     Checks if the event the doctor wants to delete is not yet booked by a 
     patient and if not; deletes it.
     """
-    
+
     service = clinic.create_service()
     shared_service = clinic.create_shared_service()
     ev = clinic.list_events(service)

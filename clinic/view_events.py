@@ -21,9 +21,9 @@ def list_events(service, only_available=False):
 
     all_events = []
 
-    s = datetime.datetime.now().isoformat() + 'Z'
+    s = datetime.datetime.now().isoformat() + '+02:00'
     elapsed = datetime.timedelta(days=7)
-    e = (datetime.datetime.now() + elapsed).isoformat() + 'Z'
+    e = (datetime.datetime.now() + elapsed).isoformat() + '+02:00'
 
     pt = None
     while 1:
