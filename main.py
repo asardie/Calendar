@@ -95,21 +95,22 @@ def do_help():
 
 
 def run_clinic():
-    args = [s.lower() for s in sys.argv]
 
-    if 'volunteer' in args:
-        volunteer()
-    elif 'make_booking' in args:
-        create_booking()
-    elif 'view_bookings' in args:
-        view_bookings()
-    elif 'cancel' in args:
-        cancel_patient()
-    elif 'delete' in args:
-        cancel_doctor()
-    elif 'help' in args or '-h' in args:
+    if len(sys.argv) == 1:
         do_help()
-    elif 'init' in args:
+    elif sys.argv[1].lower() == 'volunteer':
+        volunteer()
+    elif sys.argv[1].lower() == 'make_booking':
+        create_booking()
+    elif sys.argv[1].lower() == 'view_bookings':
+        view_bookings()
+    elif sys.argv[1].lower() == 'cancel':
+        cancel_patient()
+    elif sys.argv[1].lower() == 'delete':
+        cancel_doctor()
+    elif sys.argv[1].lower() == 'help' or sys.argv[1].lower() == '-h' :
+        do_help()
+    elif sys.argv[1].lower() == 'init':
         clinic.user_init()
 
 
