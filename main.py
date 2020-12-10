@@ -1,5 +1,6 @@
 import clinic
 import sys
+import argparse
 
 
 def volunteer():
@@ -30,7 +31,7 @@ def create_booking():
         clinic.add_as_attendee(shared_service, booking['id'])
         print("booking has been created... <3")
     else:
-        print("slot already booked...")
+        print("slot already booked. Please choose an available slot")
 
 
 def view_bookings():
@@ -76,7 +77,9 @@ def cancel_doctor():
     event = shared_service.events().get(calendarId='primary',
                                         eventId=ev[ev_id]['id']).execute()
 
-    service.events().delete(calendarId='primary', eventId='eventId').execute()
+    service.events().delete(calendarId='primary', eventId=ev[ev_id]['id']).execute()
+
+    print("Slot successfully deleted!")
 
 
 def do_help():
