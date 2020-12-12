@@ -16,7 +16,6 @@ def volunteer():
 
 
 def create_booking():
-
     """
     Allows a user to list the currently running clinics for the next
     7 days and choose a clinic to be a part of.
@@ -39,9 +38,9 @@ def view_bookings():
     """
     allows the user to view the next seven days on their personal calendar.
     """
-    service = clinic.create_service()
-    f = clinic.list_events(service)
-    clinic.print_events(f, service)
+    shared_service = clinic.create_shared_service()
+    available = clinic.list_events(shared_service)
+    clinic.print_events(available, shared_service)
 
 
 def cancel_patient():
@@ -90,11 +89,34 @@ def cancel_doctor():
 
 
 def do_help():
-    # TODO
-    pass
+    """
+    Prints a detailed list of available commands and what they do
+    """
+    print(
+    """
+    Please provide some options
+    usage: wtc-cal  [-h | --help]
+                    <command>   [<args>]
+    These are the wtc-cal commands that can be used in various situations:
+
+    setup and login
+                init    Registers the user, accesses their calender and keep them signed in
+
+    Working with Code-Clinic
+                volunteer       (for clinicians) voluteer 30 minutes to assist in someone's code
+                make_booking    (for patients) book a timeslot wherein you will be helped with your code
+                view_bookings   Show all bookings that have been made and in still available
+
+    
+
+    """)
 
 
 def run_clinic():
+    """
+    This is the main function to run the clinic. 
+    It dictates which functions to call based on user's command line input.
+    """
 
     if len(sys.argv) == 1:
         do_help()
