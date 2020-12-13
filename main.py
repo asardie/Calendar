@@ -134,6 +134,8 @@ def run_clinic():
         do_help()
     elif sys.argv[1].lower() == 'init':
         clinic.user_init()
+    else:
+        do_help()
 
 
 if __name__ == "__main__":
